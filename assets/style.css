@@ -59,7 +59,7 @@ h1 {
 
 .food {
   position: absolute;
-  margin: 2px;
+  border: 2px;
   width: 13px;
   height: 13px;
   background-color: yellow;

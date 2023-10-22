@@ -15,7 +15,7 @@ class JogoCobrinha {
     this.init();
   }
 
-  init(){     //Define a inicialização do código, as primeiras coisas geradas
+  init(){ //Define a inicialização do código, as primeiras coisas geradas
 
     // Inicialize a posição da comida
 
@@ -27,16 +27,24 @@ class JogoCobrinha {
     document.addEventListener("keydown", (event) => {
       switch (event.key) {
         case "ArrowRight":
-          this.direcao = "right";
+          if(this.direcao != "left"){
+            this.direcao = "right"
+          };
           break;
         case "ArrowLeft":
-          this.direcao = "left";
+          if(this.direcao != "right"){
+            this.direcao = "left"
+          };
           break;
         case "ArrowDown":
-          this.direcao = "down";
-          break;
+          if(this.direcao != "up"){
+            this.direcao = "down"
+          };
+          break; 
         case "ArrowUp":
-          this.direcao = "up";
+          if(this.direcao != "down"){
+            this.direcao = "up"
+          };
           break;
       };
       this.snake.style.left = this.snakeX + "px";
@@ -60,12 +68,14 @@ class JogoCobrinha {
   };
 
   checkCollision() {
-    if (this.snakeX === this.foodX && this.snakeY === this.foodY) {
+    if (this.snakeX >= this.foodX - 10 && this.snakeX <= this.foodX + 10 && this.snakeY >= this.foodY - 10 && this.snakeY <= this.foodY + 10) {
       this.score++;
       this.scoreDisplay.innerText = "Score: " + this.score;
       this.updateFoodPosition();
       this.cresceCauda();
     };
+
+  
   
     for (let i = 0; i < this.cauda.length; i++) {
       const segmento = this.cauda[i];
